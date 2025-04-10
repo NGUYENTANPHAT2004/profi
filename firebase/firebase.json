@@ -1,23 +1,6 @@
 {
-  "functions": [
-    {
-      "source": "functions",
-      "codebase": "default",
-      "ignore": [
-        "node_modules",
-        ".git",
-        "firebase-debug.log",
-        "firebase-debug.*.log",
-        "*.local"
-      ],
-      "predeploy": [
-        "npm --prefix \"$RESOURCE_DIR\" run lint",
-        "npm --prefix \"$RESOURCE_DIR\" run build"
-      ]
-    }
-  ],
   "hosting": {
-    "public": "public",
+    "public": "build",  // ✅ Thư mục sau khi chạy npm run build
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -25,8 +8,12 @@
     ],
     "rewrites": [
       {
+        "source": "/api/**",
+        "destination": "https://rococo-pastelito-2dfd1b.netlify.app/.netlify/functions/sendEmail"
+      },
+      {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/index.html" 
       }
     ]
   }
